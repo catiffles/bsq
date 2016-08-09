@@ -20,9 +20,9 @@ char	**final_map(char **newmap, t_point *max)
 	int	i;
 	int	j;
 
-	max_square = max->x;
-	x = max->y;
-	y = max->z;
+	max_square = max->max_size;
+	x = max->x;
+	y = max->y;
 	i = 0;
 	while (i++ < max_square)
 	{
@@ -32,7 +32,7 @@ char	**final_map(char **newmap, t_point *max)
 			newmap[x - 1][y - 1] = 'x';
 			y--;
 		}
-		y = max->z;
+		y = max->y;
 		x--;
 	}
 	return (newmap);

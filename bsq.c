@@ -29,7 +29,7 @@ char **readstdin(int *rows, int *cols)
 	free(shape);
 	return(astr);
 }
-	
+
 t_bool validatemap(char **astr, int cols)
 {
 	if(error_check(astr) && validatemap(astr, cols))
@@ -78,6 +78,6 @@ int	main(int argc, char **argv)
 	max = *find_biggest_square(astr, rows, cols);
 	newmap = set_map_parameters(astr, rows, cols);
 	ft_putmatrix(final_map(newmap, &max), rows, cols);
-	free_map(astr);
+	//free_map(astr);
 	return (0);
 }

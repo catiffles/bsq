@@ -42,9 +42,9 @@ t_point	*convert_grid(int **arr, int i, int j, t_point *max)
 	arr[i][j] = minimum(arr[i - 1][j], arr[i][j - 1], arr[i - 1][j - 1]) + 1;
 	if (arr[i][j] > max->x)
 	{
-		max->x = arr[i][j];
-		max->y = i;
-		max->z = j;
+		max->max_size = arr[i][j];
+		max->x = i;
+		max->y = j;
 	}
 	return (max);
 }
@@ -66,9 +66,9 @@ t_point	*find_biggest_square(char **astr, int rows, int cols)
 	t_point origmax;
 
 	i = 0;
-	origmax.x = 1;
+	origmax.max_size = 1;
+	origmax.x = 0;
 	origmax.y = 0;
-	origmax.z = 0;
 	max = &origmax;
 	arr = ft_intmatrix(rows, cols);
 	while (i < rows)

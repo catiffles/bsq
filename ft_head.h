@@ -32,9 +32,9 @@ typedef	struct			s_list
 
 typedef struct		s_point
 {
+	int max_size;
 	int x;
 	int y;
-	int z;
 }					t_point;
 
 t_list   *ft_create_elem(char data);
