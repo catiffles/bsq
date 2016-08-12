@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 				ft_putstr("map error");
 				return (0);
 			}
-			ft_putmatrix(astr, rows, cols);
+			//ft_putmatrix(astr, rows, cols);
 			i++;
 		}
 	}
@@ -78,6 +78,6 @@ int	main(int argc, char **argv)
 	max = *find_biggest_square(astr, rows, cols);
 	newmap = set_map_parameters(astr, rows, cols);
 	ft_putmatrix(final_map(newmap, &max), rows, cols);
-	//free_map(astr);
+	free_map(astr);
 	return (0);
 }
