@@ -40,21 +40,22 @@ int		**ft_intmatrix(int rows, int cols)
 t_point	*convert_grid(int **arr, int i, int j, t_point *max)
 {
 	arr[i][j] = minimum(arr[i - 1][j], arr[i][j - 1], arr[i - 1][j - 1]) + 1;
-	if (arr[i][j] > max->x)
+	if (arr[i][j] > max->max_size) // changed from max->x
 	{
 		max->max_size = arr[i][j];
 		max->x = i;
 		max->y = j;
+		//printf("[max=%d][%d][%d]", arr[i][j], i, j);
 	}
 	return (max);
 }
 
 void	calculate_sides(char **astr, int **arr, int i, int j)
 {
-	if (astr[0][j] == '.')
-		arr[0][j] = 1;
-	else if (astr[i][0] == '.')
-		arr[i][0] = 1;
+	if (astr[i][j] == '.')// replaced hardcoded zeros with i and j
+		arr[i][j] = 1;
+	else if (astr[i][j] == '.')
+		arr[i][j] = 1;
 }
 
 t_point	*find_biggest_square(char **astr, int rows, int cols)
@@ -65,6 +66,8 @@ t_point	*find_biggest_square(char **astr, int rows, int cols)
 	t_point	*max;
 	t_point origmax;
 
+	cols--;// this was to solve the issue of the int array had 1 to manny columns
+	//not sure where the issue lies, but this is not a proper solution to the issue
 	i = 0;
 	origmax.max_size = 1;
 	origmax.x = 0;
@@ -74,15 +77,20 @@ t_point	*find_biggest_square(char **astr, int rows, int cols)
 	while (i < rows)
 	{
 		j = 0;
-		while (j++ < cols)
+		while (j < cols)
 		{
 			if (astr[i][j] == 'o')
+			{
 				arr[i][j] = 0;
+			}
 			else if (i == 0 || j == 0)
 				calculate_sides(astr, arr, i, j);
 			else
 				convert_grid(arr, i, j, max);
+			//printf("%*d ", 2, arr[i][j]);
+			j++;// moved the incrementing of i and j to their own lines
 		}
+		//printf("\n");
 		i++;
 	}
 	return (max);

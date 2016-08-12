@@ -29,7 +29,7 @@ char	**final_map(char **newmap, t_point *max)
 		j = 0;
 		while (j++ < max_square)
 		{
-			newmap[x - 1][y - 1] = 'x';
+			newmap[x][y] = 'x'; // changed from newmap[x-1][y-1] = 'x';
 			y--;
 		}
 		y = max->y;
